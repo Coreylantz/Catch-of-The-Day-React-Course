@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types"
 import Header from "./Header";
 import Order from "./Order";
 import Inventory from "./Inventory";
@@ -8,10 +9,15 @@ import base from '../base';
 import sampleFishes from  "../sample-fishes";
 
 class App extends React.Component {
+  
   state = {
     fishes: {},
     order: {}
   };
+
+  static propTypes = {
+    match: PropTypes.object
+  }
 
   componentDidMount() {
     const { params } = this.props.match;
@@ -113,7 +119,8 @@ class App extends React.Component {
           addFish={this.addFish}
           updateFish={this.updateFish}
           deleteFish={this.deleteFish}
-          fishes={this.state.fishes} />
+          fishes={this.state.fishes}
+          storeId={this.props.match.params.storeId} />
       </div>
     )
   }
